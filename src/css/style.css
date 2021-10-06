@@ -53,6 +53,7 @@ body {
   width: 40px;
   height: 40px;
   text-align: center;
+  cursor: pointer;
 }
 .container .quote-box .quote-btn .share-container li .share-btn {
   color: white;

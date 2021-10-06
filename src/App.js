@@ -25,7 +25,7 @@ const App = () => {
       .then(data => {
         setQuoteArray(data.results)
       })
-      .catch(err => alert(err))
+      .catch(err => alert("Internet connection error"))
     }
     getQuoteData()
   }, [])

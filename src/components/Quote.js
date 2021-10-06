@@ -18,6 +18,21 @@ const Quote = ({ quote, mainColor, getNewQuote, fadeDuration, fadeState }) => {
     color: mainColor,
     transition: `color ${fadeDuration}ms ease-out, opacity ${fadeDuration/2}ms ease-out` 
   }
+  const fbShareBtn = () => {
+    window.FB.ui({
+      display: 'popup',
+      method: 'share',
+      hashTag: '#randomquotes',
+      quote: `${content}\n-${author}`,
+      href: 'https://voxuannguyen2001.github.io/random-quote-generator/'
+    }, function(response){});
+  }
+
+  const twitterTweetBtn = () => {
+    const url ='https://twitter.com/intent/tweet?text=' + encodeURI(`${(content)}\n-${author}}`)
+    console.log(url)
+    window.open(url, '_blank').focus()
+  }
 
   return (
     <div className='container' style={backgroundTransition}>
@@ -31,9 +46,12 @@ const Quote = ({ quote, mainColor, getNewQuote, fadeDuration, fadeState }) => {
         </div>
         <div className='quote-btn'>
           <ul className='share-container'>
-
-            <li style={backgroundTransition}><FontAwesomeIcon icon={faTwitter} className='share-btn'/> </li>
-            <li style={backgroundTransition}><FontAwesomeIcon icon={faFacebookF} className='share-btn'/> </li>
+            <li style={backgroundTransition} onClick={twitterTweetBtn}>
+              <FontAwesomeIcon icon={faTwitter} className='share-btn'/>
+            </li>
+            <li style={backgroundTransition} onClick={fbShareBtn}>
+              <FontAwesomeIcon icon={faFacebookF} className='share-btn'/> 
+            </li>
           </ul>
           <button style={backgroundTransition} className='new-quote-btn' onClick={getNewQuote}>New quote</button>
         </div>
